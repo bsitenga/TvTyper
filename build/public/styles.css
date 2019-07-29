@@ -42,7 +42,7 @@ body{
     height: 100vh;
 }
 
-input {
+.mid-circle input {
     margin: auto;
     color: #DDDDDD;
     height: 1.5em;

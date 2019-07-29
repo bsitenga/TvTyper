@@ -12,6 +12,7 @@ const Home = () => {
         <div className = "right-tab">
             <h1>TV Typeracer</h1>
             <Textbox />
+            <input type="text"></input>
         </div>
     </div>);
 }
