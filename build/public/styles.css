@@ -1,63 +1,71 @@
-body{
-    margin: 0;
+body {
+	margin: 0;
 }
 
 .home-container {
-    display: flex;
+	display: flex;
 }
 
 .textbox-container {
-    position: absolute;
-    border: 2px solid #DDDDDD;
-    margin-top: 10vh;
-    margin-left: calc(100px + 6vw);
-    width: 40vw;
-    
+	position: absolute;
+	border: 2px solid black;
+	margin-top: 10vh;
+	margin-left: calc(100px + 6vw);
+	width: 40vw;
 }
 
 .left-tab {
-    background-color: #8F3040;
-    display: inline-block;
-    width: 35vw;
-    height: 100vh;
-}
-
-.mid-circle {
-    position: absolute;
-    display: flex;
-    background-color: #5F2232;
-    width: 200px;
-    height: 200px;
-    color: white;
-    text-align: center;
-    border-radius: 100px;
-    margin-top: 37vh;
-    margin-left: calc(38vw - 100px);
+	background-color: #eeeeee;
+	display: inline-block;
+	width: 35vw;
+	height: 100vh;
 }
 
 .right-tab {
-    background-color: #83677B;
-    display: inline-block;
-    width: 65vw;
-    height: 100vh;
-}
-
-.mid-circle input {
-    margin: auto;
-    color: #DDDDDD;
-    height: 1.5em;
-    background-color: transparent;
-    border: 3px solid #4F2232;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-}
-
-input:focus {
-    outline: none !important;
+	background-color: #eeeeee;
+	display: inline-block;
+	width: 65vw;
+	height: 100vh;
 }
 
 h1 {
-    color: #DDDDDD;
-    margin-left: 1vw;
+	margin-left: 1vw;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.topnav {
+	background-color: #008ECC;
+	overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 12px 16px 8px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+	border-bottom: 5px solid #2063d2;
+	color: white;
+}
+
+.topnav .brand:hover {
+    border-bottom: 5px solid #008ECC;
+    color: #f2f2f2;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    border-bottom: 5px solid #2063d2;
+	color: white;
 }
