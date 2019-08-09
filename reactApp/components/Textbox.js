@@ -1,17 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
-const Textbox = ({onInput, onCharacter}) => {
+const Textbox = ({onInput, onCharacter, wordList}) => {
+
     return (<><div className="textbox-container">
-        Quotes to fill in
+        {wordList.map(item => {
+            return <span>{item.letter}</span>
+        })}
     </div>
-    <input type="text" value="" onChange={e => onInput(e.target.value, onCharacter)} />
+    <input autoFocus type="text" value="" onChange={e => onInput(e.target.value, onCharacter)} />
     </>)
 }
 
 Textbox.propTypes = {
     onInput: PropTypes.func,
-    onCharacter: PropTypes.func
+    onCharacter: PropTypes.func,
+    wordList: PropTypes.array,
 }
 
 export default Textbox;

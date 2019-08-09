@@ -17,7 +17,9 @@ function initialWords() {
 function gameReducer(state = { wordList: initialWords() }, action) {
 	switch (action.type) {
 		case 'LETTER_ADDED':
-			console.log("action", action.letter); 
+			if (action.letter.length === 1) {
+				console.log("action", action.letter); 
+			}
 		default:
 			return state
 	}

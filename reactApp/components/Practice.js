@@ -13,9 +13,8 @@ const Practice = ({wordList, onCharacter}) => {
 				<h1>Practice</h1>
 				<div className="show-list">List of shows to be implemented later.</div>
 				<div className="practice-tab">
-					<Textbox onInput={onInput} onCharacter={onCharacter}/>
+					<Textbox wordList={wordList} onInput={onInput} onCharacter={onCharacter}/>
 				</div>
-				{console.log(wordList)}
 			</div>
 		</div>
 	);
@@ -26,7 +25,6 @@ const onInput = (input, onCharacter) => {
 
 	} else {
 		onCharacter(input);
-		console.log(input);
 	}
 }
 
