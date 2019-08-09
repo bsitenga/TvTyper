@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-const Practice = ({wordList}) => {
+const Practice = ({wordList, onCharacter}) => {
 	return (
 		<div>
 			<Navbar />
@@ -13,16 +13,26 @@ const Practice = ({wordList}) => {
 				<h1>Practice</h1>
 				<div className="show-list">List of shows to be implemented later.</div>
 				<div className="practice-tab">
-					<Textbox />
-					<input type="text" />
+					<Textbox onInput={onInput} onCharacter={onCharacter}/>
 				</div>
+				{console.log(wordList)}
 			</div>
 		</div>
 	);
 };
 
-Practice.PropTypes = {
-	wordList: PropTypes.array
+const onInput = (input, onCharacter) => {
+	if (input === ' ') {
+
+	} else {
+		onCharacter(input);
+		console.log(input);
+	}
+}
+
+Practice.propTypes = {
+	wordList: PropTypes.array,
+	onCharacter: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -32,7 +42,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return {};
+	return {
+		onCharacter: (letter) => dispatch({
+			type: 'LETTER_ADDED',
+			letter: letter
+		})
+	};
 };
 
 //export default Practice;
