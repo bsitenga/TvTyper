@@ -14,12 +14,18 @@ function initialWords() {
 	return newWordArray;
 }
 
-function gameReducer(state = { wordList: initialWords() }, action) {
+function gameReducer(state = { wordList: initialWords(), currIndex: 0 }, action) {
 	switch (action.type) {
 		case 'LETTER_ADDED':
+			const letterList = state.wordList.slice(0);
 			if (action.letter.length === 1) {
-				console.log("action", action.letter); 
+				if (action.letter === letterList[state.currIndex].letter) {
+					letterList[state.currIndex].status = 'correct';
+				} else {
+					letterList[state.currIndex].status = 'incorrect';
+				}
 			}
+			return { wordList: letterList, currIndex: state.currIndex + 1}
 		default:
 			return state
 	}

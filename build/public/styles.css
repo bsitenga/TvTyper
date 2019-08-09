@@ -69,3 +69,15 @@ ul {
     border-bottom: 5px solid #2063d2;
 	color: white;
 }
+
+.pending {
+	color: #999999;
+}
+
+.correct {
+	color: green;
+}
+
+.incorrect {
+	color: red;
+}

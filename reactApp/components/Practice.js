@@ -21,11 +21,7 @@ const Practice = ({wordList, onCharacter}) => {
 };
 
 const onInput = (input, onCharacter) => {
-	if (input === ' ') {
-
-	} else {
 		onCharacter(input);
-	}
 }
 
 Practice.propTypes = {

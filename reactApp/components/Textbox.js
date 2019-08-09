@@ -5,7 +5,7 @@ const Textbox = ({onInput, onCharacter, wordList}) => {
 
     return (<><div className="textbox-container">
         {wordList.map(item => {
-            return <span>{item.letter}</span>
+            return <span className={item.status}>{item.letter}</span>
         })}
     </div>
     <input autoFocus type="text" value="" onChange={e => onInput(e.target.value, onCharacter)} />
