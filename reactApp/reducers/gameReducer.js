@@ -25,7 +25,11 @@ function gameReducer(state = { wordList: initialWords(), currIndex: 0 }, action)
 					letterList[state.currIndex].status = 'incorrect';
 				}
 			}
-			return { wordList: letterList, currIndex: state.currIndex + 1}
+			return { wordList: letterList, currIndex: state.currIndex + 1};
+		case 'BACKSPACE':
+			const backspaceList = state.wordList.slice(0);
+			backspaceList[state.currIndex - 1].status = 'pending';
+			return { wordList: backspaceList, currIndex: state.currIndex - 1 };
 		default:
 			return state
 	}
