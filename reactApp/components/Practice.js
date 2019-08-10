@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 class Practice extends React.Component {
 	onInput(input) {
+		console.log(this.props.gameStatus)
 		if (this.props.gameStatus === 'during') {
 			this.props.onCharacter(input);
 		} else if (this.props.gameStatus === 'before') {

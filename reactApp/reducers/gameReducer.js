@@ -16,9 +16,24 @@ function gameReducer(
 	switch (action.type) {
 		case 'LETTER_ADDED':
 			const letterList = state.wordList.slice(0);
-			if (action.letter.length === 1) {
+			let addStatus = state.gameStatus;
+			let addIndex = state.currIndex;
+			if (action.letter.length === 1 && state.currIndex < state.wordList.length) {
+				addIndex++;
 				if (action.letter === letterList[state.currIndex].letter) {
 					letterList[state.currIndex].status = 'correct';
+					if (state.currIndex + 1 === state.wordList.length - 1) {
+						let allCorrect = true;
+						for (let i = 0; i < state.wordList.length - 1; i++) {
+							if (state.wordList[i].status !== 'correct') {
+								allCorrect = false;
+								break;
+							}
+						}
+						if (allCorrect) {
+							addStatus = 'end';
+						}
+					}
 				} else {
 					letterList[state.currIndex].status = 'incorrect';
 				}
@@ -26,17 +41,21 @@ function gameReducer(
 
 			return {
 				wordList: letterList,
-				currIndex: state.currIndex + 1,
+				currIndex: addIndex,
 				WPM: state.WPM,
 				gameTimer: state.gameTimer,
-				gameStatus: state.gameStatus
+				gameStatus: addStatus
 			};
 		case 'BACKSPACE':
 			const backspaceList = state.wordList.slice(0);
-			backspaceList[state.currIndex - 1].status = 'pending';
+			let backIndex = state.currIndex;
+			if (state.currIndex !== 0) {
+				backspaceList[state.currIndex - 1].status = 'pending';
+				backIndex--;
+			}
 			return {
 				wordList: backspaceList,
-				currIndex: state.currIndex - 1,
+				currIndex: backIndex,
 				WPM: state.WPM,
 				gameTimer: state.gameTimer,
 				gameStatus: state.gameStatus

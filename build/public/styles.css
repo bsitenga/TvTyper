@@ -80,6 +80,7 @@ ul {
 
 .incorrect {
 	color: red;
+	background: salmon;
 }
 
 .about-container {
