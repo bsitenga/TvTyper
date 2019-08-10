@@ -1,15 +1,10 @@
 import Dictionary from '../Dictionary';
 
 function initialWords() {
-	const newWords = Dictionary[0][0].split(' ');
+	const newWords = Dictionary[0][0];
 	const newWordArray = [];
 	for (let i = 0; i < newWords.length; i++) {
-		for (let j = 0; j < newWords[i].length; j++) {
-			newWordArray.push({ letter: newWords[i][j], status: 'pending' });
-		}
-		if (i !== newWords.length - 1) {
-			newWordArray.push({ letter: ' ', status: 'pending' });
-		}
+		newWordArray.push({letter: newWords[i], status: 'pending' })
 	}
 	return newWordArray;
 }

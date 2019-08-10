@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom';
 
 class Practice extends React.Component {
 	onInput(input) {
-		console.log(this.props.gameStatus);
 		if (this.props.gameStatus === 'during') {
 			this.props.onCharacter(input);
 		} else if (this.props.gameStatus === 'before') {
@@ -50,64 +49,6 @@ class Practice extends React.Component {
 		);
 	}
 }
-
-// const Practice = ({
-// 	wordList,
-// 	WPM,
-// 	gameTimer,
-// 	gameStarter,
-// 	gameStatus,
-// 	onCharacter,
-// 	onBackspace,
-// 	setStatus,
-// 	increaseTimer
-// }) => {
-// 	return (
-// 		<div>
-// 			<Navbar />
-// 			<div className="practice-container">
-// 				<h1>Practice</h1>
-// 				<p>Start typing to begin practice</p>
-// 				<div className="show-list">List of shows to be implemented later.</div>
-// 				<div className="practice-tab">
-// 					<p>WPM: {WPM}</p>
-// 					<p>Time: {gameTimer}</p>
-// 					<Textbox
-// 						wordList={wordList}
-// 						onInput={createInput()}
-// 						onCharacter={onCharacter}
-// 						onKeyDown={onKeyDown}
-// 						onBackspace={onBackspace}
-// 						setStatus={setStatus}
-// 						gameStatus={gameStatus}
-// 						increaseTimer={increaseTimer}
-// 					/>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// };
-
-// const onInput = (input, onCharacter, setStatus, gameStatus, increaseTimer) => {
-// 	if (gameStatus === 'during') {
-// 		onCharacter(input);
-// 	} else if (gameStatus === 'before') {
-// 		setStatus('during');
-// 		const timer = setInterval(() => {
-// 			if (gameStatus === 'end') {
-// 				clearInterval(timer);
-// 			}
-// 			increaseTimer();
-// 		}, 1000);
-// 		onCharacter(input);
-// 	}
-// };
-
-// const onKeyDown = (e, onBackspace) => {
-// 	if (e.keyCode === 8) {
-// 		onBackspace();
-// 	}
-// };
 
 Practice.propTypes = {
 	wordList: PropTypes.array,
