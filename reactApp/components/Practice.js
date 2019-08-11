@@ -4,10 +4,15 @@ import Navbar from './Navbar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import 'babel-polyfill';
 
 class Practice extends React.Component {
+	componentDidMount() {
+		this.callBackendAPI().catch(e => {console.log(e)});
+	}
+
 	onInput(input) {
-		console.log(this.props.gameStatus)
+		console.log(this.props.gameStatus);
 		if (this.props.gameStatus === 'during') {
 			this.props.onCharacter(input);
 		} else if (this.props.gameStatus === 'before') {
@@ -20,13 +25,24 @@ class Practice extends React.Component {
 			}, 1000);
 			this.props.onCharacter(input);
 		}
-	};
+	}
 
 	onKeyDown(e) {
 		if (e.keyCode === 8) {
 			this.props.onBackspace();
 		}
-	};
+	}
+
+	async callBackendAPI() {
+		const response = await fetch('http://localhost:5000/express_backend');
+		const body = await response.json();
+
+		if (response.status !== 200) {
+			throw Error(body.message);
+		}
+
+		console.log(body);
+	}
 
 	render() {
 		return (
