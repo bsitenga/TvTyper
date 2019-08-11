@@ -12,7 +12,6 @@ class Practice extends React.Component {
 	}
 
 	onInput(input) {
-		console.log(this.props.gameStatus);
 		if (this.props.gameStatus === 'during') {
 			this.props.onCharacter(input);
 		} else if (this.props.gameStatus === 'before') {
@@ -61,6 +60,7 @@ class Practice extends React.Component {
 							onKeyDown={this.onKeyDown.bind(this)}
 						/>
 					</div>
+					<button onClick={() => {window.location.reload()}}>Try another</button>
 				</div>
 			</div>
 		);

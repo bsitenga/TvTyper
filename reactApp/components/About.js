@@ -9,12 +9,13 @@ const About = () => {
 				<h1>About TvTyper</h1>
 				<p>
 					TvTyper was created to provide users with a fun way to relive the best moments from their favorite
-					shows while improving their typing skills. Make sure to log in before you race with your friends to
-					keep track of your statistics.
+					shows while also improving their typing skills. Logging in before you race alone or with friends
+					allows you to keep track of your statistics. WPM is calculated in a way that ensures passages with
+					short words have no advantage over passages with longer words.
 				</p>
 				<p>
-					This project was built using React and Redux on the frontend. The backend was built using Node and
-					Express. If you have any questions about my work, feel free to contact me.
+					This project was built using React/Redux on the frontend, and Node/Express on the backend. For more
+					details about the specific technologies I used, please contact me directly.
 				</p>
 				<div className="about-me-card">
 					<img
@@ -22,10 +23,20 @@ const About = () => {
 						style={{ height: '250px', borderRadius: '175px' }}
 					/>
 					<h2>Brian Sitenga</h2>
-					<p>I'm a fullstack developer based in the Greater Los Angeles area. Click on the links below to see my other work or contact me.</p>
-					<button className="i-button"><i className="fab fa-linkedin"></i></button>
-					<button className="i-button"><i className="fab fa-github-square"></i></button>
-					<button className="i-button"><i className="fas fa-envelope-square"></i></button>
+					<hr />
+					<p>
+						I'm a fullstack developer based in the Greater Los Angeles area. Click on the links below to
+						contact me or see my other projects.
+					</p>
+					<button className="i-button">
+						<i className="fab fa-linkedin" />
+					</button>
+					<button className="i-button">
+						<i className="fab fa-github-square" />
+					</button>
+					<button className="i-button">
+						<i className="fas fa-envelope-square" />
+					</button>
 				</div>
 			</div>
 		</div>

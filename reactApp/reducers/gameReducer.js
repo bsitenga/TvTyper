@@ -1,10 +1,10 @@
 import Dictionary from '../Dictionary';
 
 function initialWords() {
-	const newWords = Dictionary[0][0];
+	const newWords = Dictionary.Frasier[Math.floor(Math.random() * Math.floor(Dictionary.Frasier.length))];
 	const newWordArray = [];
 	for (let i = 0; i < newWords.length; i++) {
-		newWordArray.push({letter: newWords[i], status: 'pending' })
+		newWordArray.push({ letter: newWords[i], status: 'pending' });
 	}
 	return newWordArray;
 }
@@ -22,10 +22,10 @@ function gameReducer(
 				addIndex++;
 				if (action.letter === letterList[state.currIndex].letter) {
 					letterList[state.currIndex].status = 'correct';
-					if (state.currIndex + 1 === state.wordList.length - 1) {
+					if (state.currIndex === state.wordList.length - 1) {
 						let allCorrect = true;
 						for (let i = 0; i < state.wordList.length - 1; i++) {
-							if (state.wordList[i].status !== 'correct') {
+							if (letterList[i].status !== 'correct') {
 								allCorrect = false;
 								break;
 							}
@@ -49,7 +49,7 @@ function gameReducer(
 		case 'BACKSPACE':
 			const backspaceList = state.wordList.slice(0);
 			let backIndex = state.currIndex;
-			if (state.currIndex !== 0) {
+			if (state.currIndex !== 0 && state.gameStatus !== 'end') {
 				backspaceList[state.currIndex - 1].status = 'pending';
 				backIndex--;
 			}
@@ -63,11 +63,11 @@ function gameReducer(
 		case 'INCREASE':
 			let increaseWPM = state.WPM;
 			if (state.gameTimer === 1) {
-				increaseWPM = state.currIndex / 5 / (state.gameTimer * 3 / 60);
+				increaseWPM = state.currIndex / 4.25 / (state.gameTimer * 3 / 60);
 			} else if (state.gameTimer === 2) {
-				increaseWPM = state.currIndex / 5 / (state.gameTimer * 2 / 60);
+				increaseWPM = state.currIndex / 4.25 / (state.gameTimer * 2 / 60);
 			} else if (state.gameTimer > 2) {
-				increaseWPM = state.currIndex / 5 / (state.gameTimer / 60);
+				increaseWPM = state.currIndex / 4.25 / (state.gameTimer / 60);
 			}
 			return {
 				wordList: state.wordList,
