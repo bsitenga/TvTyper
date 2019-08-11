@@ -60,7 +60,7 @@ class Practice extends React.Component {
 							onKeyDown={this.onKeyDown.bind(this)}
 						/>
 					</div>
-					<button onClick={() => {window.location.reload()}}>Try another</button>
+					{(this.props.gameStatus === 'end') && <button onClick={() => {window.location.reload()}}>Try another</button>}
 				</div>
 			</div>
 		);

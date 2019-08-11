@@ -11,5 +11,5 @@ module.exports = {
 		"Well, we mostly call our body parts by their rightful names. Except my uncle Harold. He named parts of his anatomy after the royal family. He walked on the Queen's Pins, he sat on the Duchess of Kent. He was quite a jolly fellow. That is, until Aunt Kate caught him introducing the Prince of Wales to a cocktail waitress.",
 		"Now the buffets come at a pretty hefty price, so you gotta pace yourself. And watch out for your fillers - your breads, your rolls, your chips, your dips. You've only got so much room - don't be a hero."
 	],
-	Seinfeld: [ 'Part2 first test', 'part2 second test' ]
+	Seinfeld: [ 'Part first test', 'part second test' ]
 };

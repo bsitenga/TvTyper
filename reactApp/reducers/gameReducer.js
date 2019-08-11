@@ -1,7 +1,7 @@
 import Dictionary from '../Dictionary';
 
 function initialWords() {
-	const newWords = Dictionary.Frasier[Math.floor(Math.random() * Math.floor(Dictionary.Frasier.length))];
+	const newWords = Dictionary.Seinfeld[Math.floor(Math.random() * Math.floor(Dictionary.Seinfeld.length))];
 	const newWordArray = [];
 	for (let i = 0; i < newWords.length; i++) {
 		newWordArray.push({ letter: newWords[i], status: 'pending' });
@@ -62,6 +62,10 @@ function gameReducer(
 			};
 		case 'INCREASE':
 			let increaseWPM = state.WPM;
+			let increaseTimer = state.gameTimer;
+			if (state.gameStatus ===  'during') {
+				increaseTimer++;
+			}
 			if (state.gameTimer === 1) {
 				increaseWPM = state.currIndex / 4.25 / (state.gameTimer * 3 / 60);
 			} else if (state.gameTimer === 2) {
@@ -73,7 +77,7 @@ function gameReducer(
 				wordList: state.wordList,
 				currIndex: state.currIndex,
 				WPM: Math.floor(increaseWPM),
-				gameTimer: state.gameTimer + 1,
+				gameTimer: increaseTimer,
 				gameStarter: state.gameStarter,
 				gameStatus: state.gameStatus
 			};

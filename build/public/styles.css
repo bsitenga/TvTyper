@@ -9,9 +9,12 @@ body {
 .textbox-container {
 	position: absolute;
 	border: 2px solid black;
+	padding: 4px;
 	margin-top: 10vh;
-	margin-left: calc(100px + 6vw);
-	width: 40vw;
+	margin: 10vh 25vw;
+	width: 50vw;
+	max-width: 100%;
+	font-size: 1.5em;
 }
 
 .left-tab {
@@ -76,6 +79,7 @@ ul {
 
 .correct {
 	color: green;
+	background: lightgreen;
 }
 
 .incorrect {
