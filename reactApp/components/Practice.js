@@ -55,38 +55,74 @@ class Practice extends React.Component {
 				<Navbar />
 				<div className="practice-container">
 					<h1>Practice</h1>
-					<h2>
+					<p>
 						practice{' '}
-						<div class="dropdown">
+						<div className="dropdown" style={{ display: 'inline' }}>
 							<button
-								class="btn btn-secondary dropdown-toggle"
+								className="btn btn-secondary dropdown-toggle"
 								type="button"
 								id="dropdownMenuButton"
 								data-toggle="dropdown"
 								aria-haspopup="true"
 								aria-expanded="false"
+								style={{ background: 'none', color: '#000', border: 'none' }}
 							>
-								Dropdown button
+								all
 							</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="#">
-									Action
+							<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a
+									className="dropdown-item"
+									href="#"
+									onClick={this.props.setWordList.bind(this, 'Frasier')}
+								>
+									short
 								</a>
-								<a class="dropdown-item" href="#">
-									Another action
+								<a
+									className="dropdown-item"
+									href="#"
+									onClick={this.props.setWordList.bind(this, 'Seinfeld')}
+								>
+									average
 								</a>
-								<a class="dropdown-item" href="#">
-									Something else here
+								<a className="dropdown-item" href="#">
+									long
 								</a>
 							</div>
 						</div>{' '}
-						passages from
-					</h2>
-					<button onClick={this.props.setWordList.bind(this, 'Frasier')}>Frasier</button>
-					<button onClick={this.props.setWordList.bind(this, 'Seinfeld')}>Seinfeld</button>
-					<button>Friends</button>
-					<button>Seinfeld</button>
-					<button>Test</button>
+						passages from{' '}
+						<div className="dropdown" style={{ display: 'inline' }}>
+							<button
+								className="btn btn-secondary dropdown-toggle"
+								type="button"
+								id="dropdownMenuButton"
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false"
+								style={{ background: 'none', color: '#000', border: 'none' }}
+							>
+								any show
+							</button>
+							<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a
+									className="dropdown-item"
+									href="#"
+									onClick={this.props.setWordList.bind(this, 'Frasier')}
+								>
+									Frasier
+								</a>
+								<a
+									className="dropdown-item"
+									href="#"
+									onClick={this.props.setWordList.bind(this, 'Seinfeld')}
+								>
+									Seinfeld
+								</a>
+								<a className="dropdown-item" href="#">
+									Something else here
+								</a>
+							</div>
+						</div>
+					</p>
 					<p>Start typing to begin practice</p>
 					<div className="show-list">List of shows to be implemented later.</div>
 					<div className="practice-tab">

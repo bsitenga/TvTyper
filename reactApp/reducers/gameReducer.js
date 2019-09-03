@@ -17,7 +17,9 @@ function gameReducer(
 		gameTimer: 0,
 		gameStarter: 5,
 		gameStatus: 'before',
-		progress: 0
+		progress: 0,
+		passageLength: 'all',
+		passageShow: 'any'
 	},
 	action
 ) {
@@ -53,7 +55,9 @@ function gameReducer(
 				WPM: state.WPM,
 				gameTimer: state.gameTimer,
 				gameStatus: addStatus,
-				progress: state.currIndex / (state.wordList.length - 1)
+				progress: state.currIndex / (state.wordList.length - 1),
+				passageLength: state.passageLength,
+				passageShow: state.passageShow
 			};
 		case 'BACKSPACE':
 			const backspaceList = state.wordList.slice(0);
@@ -68,7 +72,9 @@ function gameReducer(
 				WPM: state.WPM,
 				gameTimer: state.gameTimer,
 				gameStatus: state.gameStatus,
-				progress: state.currIndex / (state.wordList.length - 1)
+				progress: state.currIndex / (state.wordList.length - 1),
+				passageLength: state.passageLength,
+				passageShow: state.passageShow
 			};
 		case 'INCREASE':
 			let increaseWPM = state.WPM;
@@ -90,7 +96,9 @@ function gameReducer(
 				gameTimer: increaseTimer,
 				gameStarter: state.gameStarter,
 				gameStatus: state.gameStatus,
-				progress: state.progress
+				progress: state.progress,
+				passageLength: state.passageLength,
+				passageShow: state.passageShow
 			};
 		case 'STATUS':
 			return {
@@ -100,10 +108,13 @@ function gameReducer(
 				gameTimer: state.gameTimer,
 				gameStarter: state.gameStarter,
 				gameStatus: action.status,
-				progress: state.progress
+				progress: state.progress,
+				passageLength: state.passageLength,
+				passageShow: state.passageShow
 			};
 		case 'NEWSHOW':
-			const newWords = Dictionary[action.tvShow][Math.floor(Math.random() * Math.floor(Dictionary[action.tvShow].length))];
+			const newWords =
+				Dictionary[action.tvShow][Math.floor(Math.random() * Math.floor(Dictionary[action.tvShow].length))];
 			const newWordArray = [];
 			for (let i = 0; i < newWords.length; i++) {
 				newWordArray.push({ letter: newWords[i], status: 'pending' });
@@ -115,7 +126,9 @@ function gameReducer(
 				gameTimer: state.gameTimer,
 				gameStarter: state.gameStarter,
 				gameStatus: state.gameStatus,
-				progress: state.progress
+				progress: state.progress,
+				passageLength: state.passageLength,
+				passageShow: state.passageShow
 			};
 		default:
 			return state;
