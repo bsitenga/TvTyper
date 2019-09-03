@@ -1,7 +1,7 @@
 import Dictionary from '../Dictionary';
 
 function initialWords() {
-	const newWords = Dictionary.Seinfeld[Math.floor(Math.random() * Math.floor(Dictionary.Seinfeld.length))];
+	const newWords = Dictionary.Frasier[Math.floor(Math.random() * Math.floor(Dictionary.Frasier.length))];
 	const newWordArray = [];
 	for (let i = 0; i < newWords.length; i++) {
 		newWordArray.push({ letter: newWords[i], status: 'pending' });
@@ -10,7 +10,15 @@ function initialWords() {
 }
 
 function gameReducer(
-	state = { wordList: initialWords(), currIndex: 0, WPM: 0, gameTimer: 0, gameStarter: 5, gameStatus: 'before' },
+	state = {
+		wordList: initialWords(),
+		currIndex: 0,
+		WPM: 0,
+		gameTimer: 0,
+		gameStarter: 5,
+		gameStatus: 'before',
+		progress: 0
+	},
 	action
 ) {
 	switch (action.type) {
@@ -44,7 +52,8 @@ function gameReducer(
 				currIndex: addIndex,
 				WPM: state.WPM,
 				gameTimer: state.gameTimer,
-				gameStatus: addStatus
+				gameStatus: addStatus,
+				progress: state.currIndex / (state.wordList.length - 1)
 			};
 		case 'BACKSPACE':
 			const backspaceList = state.wordList.slice(0);
@@ -58,12 +67,13 @@ function gameReducer(
 				currIndex: backIndex,
 				WPM: state.WPM,
 				gameTimer: state.gameTimer,
-				gameStatus: state.gameStatus
+				gameStatus: state.gameStatus,
+				progress: state.currIndex / (state.wordList.length - 1)
 			};
 		case 'INCREASE':
 			let increaseWPM = state.WPM;
 			let increaseTimer = state.gameTimer;
-			if (state.gameStatus ===  'during') {
+			if (state.gameStatus === 'during') {
 				increaseTimer++;
 			}
 			if (state.gameTimer === 1) {
@@ -79,7 +89,8 @@ function gameReducer(
 				WPM: Math.floor(increaseWPM),
 				gameTimer: increaseTimer,
 				gameStarter: state.gameStarter,
-				gameStatus: state.gameStatus
+				gameStatus: state.gameStatus,
+				progress: state.progress
 			};
 		case 'STATUS':
 			return {
@@ -88,7 +99,23 @@ function gameReducer(
 				WPM: state.WPM,
 				gameTimer: state.gameTimer,
 				gameStarter: state.gameStarter,
-				gameStatus: action.status
+				gameStatus: action.status,
+				progress: state.progress
+			};
+		case 'NEWSHOW':
+			const newWords = Dictionary[action.tvShow][Math.floor(Math.random() * Math.floor(Dictionary[action.tvShow].length))];
+			const newWordArray = [];
+			for (let i = 0; i < newWords.length; i++) {
+				newWordArray.push({ letter: newWords[i], status: 'pending' });
+			}
+			return {
+				wordList: newWordArray,
+				currIndex: state.currIndex,
+				WPM: state.WPM,
+				gameTimer: state.gameTimer,
+				gameStarter: state.gameStarter,
+				gameStatus: state.gameStatus,
+				progress: state.progress
 			};
 		default:
 			return state;

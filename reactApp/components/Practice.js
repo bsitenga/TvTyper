@@ -1,6 +1,7 @@
 import React from 'react';
 import Textbox from './Textbox';
 import Navbar from './Navbar';
+import ProgressBar from './ProgressBar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -8,7 +9,9 @@ import 'babel-polyfill';
 
 class Practice extends React.Component {
 	componentDidMount() {
-		this.callBackendAPI().catch(e => {console.log(e)});
+		this.callBackendAPI().catch((e) => {
+			console.log(e);
+		});
 	}
 
 	onInput(input) {
@@ -32,10 +35,13 @@ class Practice extends React.Component {
 		}
 	}
 
+	getProgressWidth() {
+		return this.props.currIndex / this.props.wordList.length;
+	}
+
 	async callBackendAPI() {
 		const response = await fetch('http://localhost:5000/express_backend');
 		const body = await response.json();
-
 		if (response.status !== 200) {
 			throw Error(body.message);
 		}
@@ -49,18 +55,32 @@ class Practice extends React.Component {
 				<Navbar />
 				<div className="practice-container">
 					<h1>Practice</h1>
+					<button onClick={this.props.setWordList.bind(this, "Frasier")}>Frasier</button>
+					<button onClick={this.props.setWordList.bind(this, "Seinfeld")}>Seinfeld</button>
+					<button>Friends</button>
+					<button>Seinfeld</button>
+					<button>Test</button>
 					<p>Start typing to begin practice</p>
 					<div className="show-list">List of shows to be implemented later.</div>
 					<div className="practice-tab">
 						<p>WPM: {this.props.WPM}</p>
 						<p>Time: {this.props.gameTimer}</p>
+						<ProgressBar progress={this.props.progress} />
 						<Textbox
 							wordList={this.props.wordList}
 							onInput={this.onInput.bind(this)}
 							onKeyDown={this.onKeyDown.bind(this)}
 						/>
 					</div>
-					{(this.props.gameStatus === 'end') && <button onClick={() => {window.location.reload()}}>Try another</button>}
+					{this.props.gameStatus === 'end' && (
+						<button
+							onClick={() => {
+								window.location.reload();
+							}}
+						>
+							Try another
+						</button>
+					)}
 				</div>
 			</div>
 		);
@@ -72,11 +92,13 @@ Practice.propTypes = {
 	WPM: PropTypes.number,
 	gameTimer: PropTypes.number,
 	gameStarter: PropTypes.number,
+	currIndex: PropTypes.number,
 	gameStatus: PropTypes.string,
 	onCharacter: PropTypes.func,
 	onBackspace: PropTypes.func,
 	setStatus: PropTypes.func,
-	increaseTimer: PropTypes.func
+	increaseTimer: PropTypes.func,
+	setWordList: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -85,7 +107,9 @@ const mapStateToProps = (state) => {
 		WPM: state.fullGame.WPM,
 		gameTimer: state.fullGame.gameTimer,
 		gameStarter: state.fullGame.gameStarter,
-		gameStatus: state.fullGame.gameStatus
+		gameStatus: state.fullGame.gameStatus,
+		currIndex: state.fullGame.currIndex,
+		progress: state.fullGame.progress
 	};
 };
 
@@ -110,6 +134,12 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch({
 				type: 'INCREASE'
 			});
+		},
+		setWordList: (tvShow) => {
+			dispatch({
+				type: 'NEWSHOW',
+				tvShow: tvShow
+			})
 		}
 	};
 };
