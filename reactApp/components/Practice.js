@@ -55,8 +55,35 @@ class Practice extends React.Component {
 				<Navbar />
 				<div className="practice-container">
 					<h1>Practice</h1>
-					<button onClick={this.props.setWordList.bind(this, "Frasier")}>Frasier</button>
-					<button onClick={this.props.setWordList.bind(this, "Seinfeld")}>Seinfeld</button>
+					<h2>
+						practice{' '}
+						<div class="dropdown">
+							<button
+								class="btn btn-secondary dropdown-toggle"
+								type="button"
+								id="dropdownMenuButton"
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false"
+							>
+								Dropdown button
+							</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item" href="#">
+									Action
+								</a>
+								<a class="dropdown-item" href="#">
+									Another action
+								</a>
+								<a class="dropdown-item" href="#">
+									Something else here
+								</a>
+							</div>
+						</div>{' '}
+						passages from
+					</h2>
+					<button onClick={this.props.setWordList.bind(this, 'Frasier')}>Frasier</button>
+					<button onClick={this.props.setWordList.bind(this, 'Seinfeld')}>Seinfeld</button>
 					<button>Friends</button>
 					<button>Seinfeld</button>
 					<button>Test</button>
@@ -98,7 +125,7 @@ Practice.propTypes = {
 	onBackspace: PropTypes.func,
 	setStatus: PropTypes.func,
 	increaseTimer: PropTypes.func,
-	setWordList: PropTypes.func,
+	setWordList: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -139,7 +166,7 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch({
 				type: 'NEWSHOW',
 				tvShow: tvShow
-			})
+			});
 		}
 	};
 };
