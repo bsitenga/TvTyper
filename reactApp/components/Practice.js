@@ -137,9 +137,7 @@ class Practice extends React.Component {
 					</div>
 					{this.props.gameStatus === 'end' && (
 						<button
-							onClick={() => {
-								window.location.reload();
-							}}
+							onClick={this.props.startNew.bind(this)}
 						>
 							Try another
 						</button>
@@ -161,7 +159,8 @@ Practice.propTypes = {
 	onBackspace: PropTypes.func,
 	setStatus: PropTypes.func,
 	increaseTimer: PropTypes.func,
-	setWordList: PropTypes.func
+	setWordList: PropTypes.func,
+	startNew: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -203,6 +202,11 @@ const mapDispatchToProps = (dispatch) => {
 				type: 'NEWSHOW',
 				tvShow: tvShow
 			});
+		},
+		startNew: () => {
+			dispatch({
+				type: 'NEWPRACTICE'
+			})
 		}
 	};
 };

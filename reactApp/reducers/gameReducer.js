@@ -121,15 +121,28 @@ function gameReducer(
 			}
 			return {
 				wordList: newWordArray,
-				currIndex: state.currIndex,
-				WPM: state.WPM,
-				gameTimer: state.gameTimer,
-				gameStarter: state.gameStarter,
-				gameStatus: state.gameStatus,
-				progress: state.progress,
+				currIndex: 0,
+				WPM: 0,
+				gameTimer: 0,
+				gameStarter: 5,
+				gameStatus: 'before',
+				progress: 0,
 				passageLength: state.passageLength,
-				passageShow: state.passageShow
+				passageShow: action.tvShow
 			};
+		case 'NEWPRACTICE':
+			
+				return {
+					wordList: initialWords(),
+					currIndex: 0,
+					WPM: 0,
+					gameTimer: 0,
+					gameStarter: 5,
+					gameStatus: 'before',
+					progress: 0,
+					passageLength: state.passageLength,
+					passageShow: action.tvShow
+				};
 		default:
 			return state;
 	}
