@@ -1,13 +1,25 @@
 import Dictionary from '../Dictionary';
 
 function initialWords() {
+	const initialLength = getPassageLength('all');
 	let anyShow = Dictionary.allShows[Math.floor(Math.random() * Math.floor(Dictionary.allShows.length))]
-	const newWords = Dictionary[anyShow][Math.floor(Math.random() * Math.floor(Dictionary[anyShow].length))];
+	const newWords = Dictionary[anyShow][initialLength][Math.floor(Math.random() * Math.floor(Dictionary[anyShow][initialLength].length))];
 	const newWordArray = [];
 	for (let i = 0; i < newWords.length; i++) {
 		newWordArray.push({ letter: newWords[i], status: 'pending' });
 	}
 	return newWordArray;
+}
+
+function getPassageLength(lengthWord) {
+	if (lengthWord === 'short') {
+		return 0;
+	} else if (lengthWord === 'average') {
+		return 1;
+	} else if (lengthWord === 'long') {
+		return 2;
+	}
+	return Math.floor(Math.random() * 3)
 }
 
 function gameReducer(
@@ -115,11 +127,12 @@ function gameReducer(
 			};
 		case 'NEWSHOW':
 			let newWords;
+			const newLength = getPassageLength(state.passageLength);
 			if (action.tvShow === 'any show') {
 				let anyShow = Dictionary.allShows[Math.floor(Math.random() * Math.floor(Dictionary.allShows.length))]
-				newWords = Dictionary[anyShow][Math.floor(Math.random() * Math.floor(Dictionary[anyShow].length))];
+				newWords = Dictionary[anyShow][newLength][Math.floor(Math.random() * Math.floor(Dictionary[anyShow][newLength].length))];
 			} else {
-				newWords = Dictionary[action.tvShow][Math.floor(Math.random() * Math.floor(Dictionary[action.tvShow].length))];
+				newWords = Dictionary[action.tvShow][newLength][Math.floor(Math.random() * Math.floor(Dictionary[action.tvShow][newLength].length))];
 			}
 			const newWordArray = [];
 			for (let i = 0; i < newWords.length; i++) {
@@ -138,11 +151,12 @@ function gameReducer(
 			};
 		case 'NEWPRACTICE':
 			let newPracticeWords;
+			const newPracticeLength = getPassageLength(state.passageLength);
 			if (state.passageShow === 'any show') {
 				let anyShow = Dictionary.allShows[Math.floor(Math.random() * Math.floor(Dictionary.allShows.length))]
-				newPracticeWords = Dictionary[anyShow][Math.floor(Math.random() * Math.floor(Dictionary[anyShow].length))];
+				newPracticeWords = Dictionary[anyShow][newPracticeLength][Math.floor(Math.random() * Math.floor(Dictionary[anyShow][newPracticeLength].length))];
 			} else {
-				newPracticeWords = Dictionary[state.passageShow][Math.floor(Math.random() * Math.floor(Dictionary[state.passageShow].length))];
+				newPracticeWords = Dictionary[state.passageShow][newPracticeLength][Math.floor(Math.random() * Math.floor(Dictionary[state.passageShow][newPracticeLength].length))];
 			}
 			const newPracticeArray = [];
 			for (let i = 0; i < newPracticeWords.length; i++) {
