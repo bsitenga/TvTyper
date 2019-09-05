@@ -127,12 +127,12 @@ function gameReducer(
 			};
 		case 'NEWSHOW':
 			let newWords;
-			const newLength = getPassageLength(state.passageLength);
+			const newShowLength = getPassageLength(state.passageLength);
 			if (action.tvShow === 'any show') {
 				let anyShow = Dictionary.allShows[Math.floor(Math.random() * Math.floor(Dictionary.allShows.length))]
-				newWords = Dictionary[anyShow][newLength][Math.floor(Math.random() * Math.floor(Dictionary[anyShow][newLength].length))];
+				newWords = Dictionary[anyShow][newShowLength][Math.floor(Math.random() * Math.floor(Dictionary[anyShow][newShowLength].length))];
 			} else {
-				newWords = Dictionary[action.tvShow][newLength][Math.floor(Math.random() * Math.floor(Dictionary[action.tvShow][newLength].length))];
+				newWords = Dictionary[action.tvShow][newShowLength][Math.floor(Math.random() * Math.floor(Dictionary[action.tvShow][newShowLength].length))];
 			}
 			const newWordArray = [];
 			for (let i = 0; i < newWords.length; i++) {
@@ -148,6 +148,31 @@ function gameReducer(
 				progress: 0,
 				passageLength: state.passageLength,
 				passageShow: action.tvShow
+			};
+		case 'NEWLENGTH':
+			console.log('hello');
+			let newLengthWords;
+			const newLengthLength = getPassageLength(action.tvLength);
+			if (state.passageShow === 'any show') {
+				let anyShow = Dictionary.allShows[Math.floor(Math.random() * Math.floor(Dictionary.allShows.length))]
+				newLengthWords = Dictionary[anyShow][newLengthLength][Math.floor(Math.random() * Math.floor(Dictionary[anyShow][newLengthLength].length))];
+			} else {
+				newLengthWords = Dictionary[state.passageShow][newLengthLength][Math.floor(Math.random() * Math.floor(Dictionary[state.passageShow][newLengthLength].length))];
+			}
+			const newLengthArray = [];
+			for (let i = 0; i < newLengthWords.length; i++) {
+				newLengthArray.push({letter: newLengthWords[i], status: 'pending'});
+			}
+			return {
+				wordList: newLengthArray,
+				currIndex: 0,
+				WPM: 0,
+				gameTimer: 0,
+				gameStarter: 5,
+				gameStatus: 'before',
+				progress: 0,
+				passageLength: action.tvLength,
+				passageShow: state.passageShow
 			};
 		case 'NEWPRACTICE':
 			let newPracticeWords;

@@ -70,21 +70,32 @@ class Practice extends React.Component {
 								{this.props.passageLength}
 							</button>
 							<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a
+									className="dropdown-item"
+									href="#"
+									onClick={this.props.setPassageLength.bind(this, 'all')}
+								>
+									all
+								</a>
 								<a
 									className="dropdown-item"
 									href="#"
-									onClick={this.props.setWordList.bind(this, 'Frasier')}
+									onClick={this.props.setPassageLength.bind(this, 'short')}
 								>
 									short
 								</a>
 								<a
 									className="dropdown-item"
 									href="#"
-									onClick={this.props.setWordList.bind(this, 'Seinfeld')}
+									onClick={this.props.setPassageLength.bind(this, 'average')}
 								>
 									average
 								</a>
-								<a className="dropdown-item" href="#">
+								<a
+									className="dropdown-item"
+									href="#"
+									onClick={this.props.setPassageLength.bind(this, 'long')}
+								>
 									long
 								</a>
 							</div>
@@ -162,7 +173,8 @@ Practice.propTypes = {
 	setStatus: PropTypes.func,
 	increaseTimer: PropTypes.func,
 	setWordList: PropTypes.func,
-	startNew: PropTypes.func
+	startNew: PropTypes.func,
+	setPassageLength: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -205,6 +217,12 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch({
 				type: 'NEWSHOW',
 				tvShow: tvShow
+			});
+		},
+		setPassageLength: (tvLength) => {
+			dispatch({
+				type: 'NEWLENGTH',
+				tvLength: tvLength
 			});
 		},
 		startNew: () => {
