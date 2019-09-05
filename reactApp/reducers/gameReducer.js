@@ -114,8 +114,13 @@ function gameReducer(
 				passageShow: state.passageShow
 			};
 		case 'NEWSHOW':
-			const newWords =
-				Dictionary[action.tvShow][Math.floor(Math.random() * Math.floor(Dictionary[action.tvShow].length))];
+			let newWords;
+			if (action.tvShow === 'any show') {
+				let anyShow = Dictionary.allShows[Math.floor(Math.random() * Math.floor(Dictionary.allShows.length))]
+				newWords = Dictionary[anyShow][Math.floor(Math.random() * Math.floor(Dictionary[anyShow].length))];
+			} else {
+				newWords = Dictionary[action.tvShow][Math.floor(Math.random() * Math.floor(Dictionary[action.tvShow].length))];
+			}
 			const newWordArray = [];
 			for (let i = 0; i < newWords.length; i++) {
 				newWordArray.push({ letter: newWords[i], status: 'pending' });
@@ -133,13 +138,10 @@ function gameReducer(
 			};
 		case 'NEWPRACTICE':
 			let newPracticeWords;
-			console.log(state.passageShow);	
 			if (state.passageShow === 'any show') {
-				console.log(1);
 				let anyShow = Dictionary.allShows[Math.floor(Math.random() * Math.floor(Dictionary.allShows.length))]
 				newPracticeWords = Dictionary[anyShow][Math.floor(Math.random() * Math.floor(Dictionary[anyShow].length))];
 			} else {
-				console.log(2);
 				newPracticeWords = Dictionary[state.passageShow][Math.floor(Math.random() * Math.floor(Dictionary[state.passageShow].length))];
 			}
 			const newPracticeArray = [];

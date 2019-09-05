@@ -67,7 +67,7 @@ class Practice extends React.Component {
 								aria-expanded="false"
 								style={{ background: 'none', color: '#000', border: 'none' }}
 							>
-								all
+								{this.props.passageLength}
 							</button>
 							<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 								<a
@@ -106,6 +106,13 @@ class Practice extends React.Component {
 								<a
 									className="dropdown-item"
 									href="#"
+									onClick={this.props.setWordList.bind(this, 'any show')}
+								>
+									any show
+								</a>
+								<a
+									className="dropdown-item"
+									href="#"
 									onClick={this.props.setWordList.bind(this, 'Frasier')}
 								>
 									Frasier
@@ -116,9 +123,6 @@ class Practice extends React.Component {
 									onClick={this.props.setWordList.bind(this, 'Seinfeld')}
 								>
 									Seinfeld
-								</a>
-								<a className="dropdown-item" href="#">
-									Something else here
 								</a>
 							</div>
 						</div>
@@ -136,11 +140,7 @@ class Practice extends React.Component {
 						/>
 					</div>
 					{this.props.gameStatus === 'end' && (
-						<button
-							onClick={this.props.startNew.bind(this)}
-						>
-							Try another
-						</button>
+						<button onClick={this.props.startNew.bind(this)}>Try another</button>
 					)}
 				</div>
 			</div>
@@ -156,12 +156,13 @@ Practice.propTypes = {
 	currIndex: PropTypes.number,
 	gameStatus: PropTypes.string,
 	passageShow: PropTypes.string,
+	passageLength: PropTypes.string,
 	onCharacter: PropTypes.func,
 	onBackspace: PropTypes.func,
 	setStatus: PropTypes.func,
 	increaseTimer: PropTypes.func,
 	setWordList: PropTypes.func,
-	startNew: PropTypes.func,
+	startNew: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -174,6 +175,7 @@ const mapStateToProps = (state) => {
 		currIndex: state.fullGame.currIndex,
 		progress: state.fullGame.progress,
 		passageShow: state.fullGame.passageShow,
+		passageLength: state.fullGame.passageLength
 	};
 };
 
@@ -208,7 +210,7 @@ const mapDispatchToProps = (dispatch) => {
 		startNew: () => {
 			dispatch({
 				type: 'NEWPRACTICE'
-			})
+			});
 		}
 	};
 };
