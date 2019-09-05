@@ -6,10 +6,18 @@ const TvShowSchema = new Schema({
 		type: String,
 		required: true
 	},
-	Passages: {
+	short: {
 		type: Array,
 		required: true
-	}
+    },
+    average: {
+		type: Array,
+		required: true
+    },
+    long: {
+		type: Array,
+		required: true
+    }, 
 });
 
 module.exports = mongoose.model('TvShow', TvShowSchema);
