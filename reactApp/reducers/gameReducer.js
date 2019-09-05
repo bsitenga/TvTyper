@@ -1,7 +1,8 @@
 import Dictionary from '../Dictionary';
 
 function initialWords() {
-	const newWords = Dictionary.Frasier[Math.floor(Math.random() * Math.floor(Dictionary.Frasier.length))];
+	let anyShow = Dictionary.allShows[Math.floor(Math.random() * Math.floor(Dictionary.allShows.length))]
+	const newWords = Dictionary[anyShow][Math.floor(Math.random() * Math.floor(Dictionary[anyShow].length))];
 	const newWordArray = [];
 	for (let i = 0; i < newWords.length; i++) {
 		newWordArray.push({ letter: newWords[i], status: 'pending' });
@@ -19,7 +20,7 @@ function gameReducer(
 		gameStatus: 'before',
 		progress: 0,
 		passageLength: 'all',
-		passageShow: 'any'
+		passageShow: 'any show'
 	},
 	action
 ) {
@@ -131,18 +132,31 @@ function gameReducer(
 				passageShow: action.tvShow
 			};
 		case 'NEWPRACTICE':
-			
-				return {
-					wordList: initialWords(),
-					currIndex: 0,
-					WPM: 0,
-					gameTimer: 0,
-					gameStarter: 5,
-					gameStatus: 'before',
-					progress: 0,
-					passageLength: state.passageLength,
-					passageShow: action.tvShow
-				};
+			let newPracticeWords;
+			console.log(state.passageShow);	
+			if (state.passageShow === 'any show') {
+				console.log(1);
+				let anyShow = Dictionary.allShows[Math.floor(Math.random() * Math.floor(Dictionary.allShows.length))]
+				newPracticeWords = Dictionary[anyShow][Math.floor(Math.random() * Math.floor(Dictionary[anyShow].length))];
+			} else {
+				console.log(2);
+				newPracticeWords = Dictionary[state.passageShow][Math.floor(Math.random() * Math.floor(Dictionary[state.passageShow].length))];
+			}
+			const newPracticeArray = [];
+			for (let i = 0; i < newPracticeWords.length; i++) {
+				newPracticeArray.push({letter: newPracticeWords[i], status: 'pending'});
+			}
+			return {
+				wordList: newPracticeArray,
+				currIndex: 0,
+				WPM: 0,
+				gameTimer: 0,
+				gameStarter: 5,
+				gameStatus: 'before',
+				progress: 0,
+				passageLength: state.passageLength,
+				passageShow: state.passageShow
+			};
 		default:
 			return state;
 	}

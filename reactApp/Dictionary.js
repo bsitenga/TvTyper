@@ -1,4 +1,8 @@
 module.exports = {
+	allShows: [
+		'Frasier',
+		'Seinfeld'
+	],
 	Frasier: [
 		"As we speak, hordes of viral Visigoths are hurling themselves over the battlements of my immune system, laying waste to my... Oh, dear God, you see how weak I am? I can't even finish a simple Visigoth metaphor.",
 		'Roger, at Cornell University they have an incredible piece of scientific equipment known as the Tunneling Electron Microscope. Now, this microscope is so powerful that by firing electrons you can actually see images of the atom, the infinitesimally minute building blocks of our universe. Roger, if I were using that microscope right now, I still would not be able to locate my interest in your problem.',

@@ -100,7 +100,7 @@ class Practice extends React.Component {
 								aria-expanded="false"
 								style={{ background: 'none', color: '#000', border: 'none' }}
 							>
-								any show
+								{this.props.passageShow}
 							</button>
 							<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 								<a
@@ -155,6 +155,7 @@ Practice.propTypes = {
 	gameStarter: PropTypes.number,
 	currIndex: PropTypes.number,
 	gameStatus: PropTypes.string,
+	passageShow: PropTypes.string,
 	onCharacter: PropTypes.func,
 	onBackspace: PropTypes.func,
 	setStatus: PropTypes.func,
@@ -171,7 +172,8 @@ const mapStateToProps = (state) => {
 		gameStarter: state.fullGame.gameStarter,
 		gameStatus: state.fullGame.gameStatus,
 		currIndex: state.fullGame.currIndex,
-		progress: state.fullGame.progress
+		progress: state.fullGame.progress,
+		passageShow: state.fullGame.passageShow,
 	};
 };
 
