@@ -54,9 +54,8 @@ class Practice extends React.Component {
 			<div>
 				<Navbar />
 				<div className="practice-container">
-					<h1>Practice</h1>
-					<p>
-						practice{' '}
+					<div div className="practice-filter">
+						Practice{' '}
 						<div className="dropdown" style={{ display: 'inline' }}>
 							<button
 								className="btn btn-secondary dropdown-toggle"
@@ -65,12 +64,19 @@ class Practice extends React.Component {
 								data-toggle="dropdown"
 								aria-haspopup="true"
 								aria-expanded="false"
-								style={{ background: 'none', color: '#000', border: 'none' }}
+								style={{
+									background: 'none',
+									color: '#000',
+									border: 'none',
+									outline: 'none',
+									fontSize: '1em',
+									paddingBottom: '.5em'
+								}}
 							>
 								{this.props.passageLength}
 							</button>
 							<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a
+								<a
 									className="dropdown-item"
 									href="#"
 									onClick={this.props.setPassageLength.bind(this, 'all')}
@@ -109,7 +115,14 @@ class Practice extends React.Component {
 								data-toggle="dropdown"
 								aria-haspopup="true"
 								aria-expanded="false"
-								style={{ background: 'none', color: '#000', border: 'none' }}
+								style={{
+									background: 'none',
+									color: '#000',
+									border: 'none',
+									outline: 'none',
+									fontSize: '1em',
+									paddingBottom: '.5em'
+								}}
 							>
 								{this.props.passageShow}
 							</button>
@@ -137,12 +150,9 @@ class Practice extends React.Component {
 								</a>
 							</div>
 						</div>
-					</p>
-					<p>Start typing to begin practice</p>
-					<div className="show-list">List of shows to be implemented later.</div>
+					</div>
+					<p style={{fontSize: "1.5em"}}>{(this.props.gameStatus === 'before') ? <p>Start typing to begin!</p>: <p>WPM: {this.props.WPM} Time: {this.props.gameTimer}</p>}</p>
 					<div className="practice-tab">
-						<p>WPM: {this.props.WPM}</p>
-						<p>Time: {this.props.gameTimer}</p>
 						<ProgressBar progress={this.props.progress} />
 						<Textbox
 							wordList={this.props.wordList}
