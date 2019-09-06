@@ -8,7 +8,7 @@ const Textbox = ({onInput, wordList, onKeyDown}) => {
             return <span className={item.status}>{item.letter}</span>
         })}
     </div>
-    <input autoFocus type="text" value="" onChange={e => onInput(e.target.value)} onKeyDown={e => onKeyDown(e)}/>
+    <input className="input-box" autoFocus type="text" value="" onChange={e => onInput(e.target.value)} onKeyDown={e => onKeyDown(e)}/>
     </>)
 }
 

@@ -153,7 +153,7 @@ class Practice extends React.Component {
 					</div>
 					<p style={{fontSize: "1.5em"}}>{(this.props.gameStatus === 'before') ? <p>Start typing to begin!</p>: <p>WPM: {this.props.WPM} Time: {this.props.gameTimer}</p>}</p>
 					<div className="practice-tab">
-						<ProgressBar progress={this.props.progress} />
+						<p>Feeling competitive? <a href = "/race">Join a race.</a></p>
 						<Textbox
 							wordList={this.props.wordList}
 							onInput={this.onInput.bind(this)}
@@ -161,8 +161,12 @@ class Practice extends React.Component {
 						/>
 					</div>
 					{this.props.gameStatus === 'end' && (
-						<button onClick={this.props.startNew.bind(this)}>Try another</button>
+						<button onClick={this.props.startNew.bind(this)}
+						>Try another</button>
 					)}
+					<div style ={{marginTop: "50px"}}>
+						<p><a href = "/login">Login</a> to see your stats.</p>
+					</div>
 				</div>
 			</div>
 		);

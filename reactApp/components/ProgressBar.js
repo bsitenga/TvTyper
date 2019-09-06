@@ -1,9 +1,8 @@
 import React from 'react';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
 const ProgressBar = ({ progress }) => {
 	return (
-		<div className = "outer-progress-bar">
+		<div className = "outer-progress-bar" style = {{margin: "15px auto"}}>
 			<div className="inner-progress-bar" style={{width: `${progress * 100}%`}}>
                 
 			</div>

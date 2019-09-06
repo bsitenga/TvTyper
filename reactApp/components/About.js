@@ -6,7 +6,7 @@ const About = () => {
 		<div>
 			<Navbar />
 			<div className="about-container">
-				<h1>About TvTyper</h1>
+				<div style = {{fontSize: "2em", marginTop: "15px", marginBottom: "5px"}}>About TvTyper</div>
 				<p>
 					TvTyper was created to provide users with a fun way to relive the best moments from their favorite
 					shows while also improving their typing skills. Logging in before you race alone or with friends
