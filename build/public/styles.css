@@ -142,3 +142,14 @@ hr {
 	max-width: 100%;
 	height: 40px;
 }
+
+.home-card {
+	display: inline-block;
+	text-align: center;
+	width: 20vw;
+}
+
+.home-card button {
+	display: block;
+	margin: 0 auto;
+}

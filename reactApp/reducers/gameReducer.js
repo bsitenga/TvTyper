@@ -98,12 +98,14 @@ function gameReducer(
 			if (state.gameStatus === 'during') {
 				increaseTimer++;
 			}
-			if (state.gameTimer === 1) {
-				increaseWPM = state.currIndex / 4.25 / (state.gameTimer * 3 / 60);
+			if (state.gameTimer > 3) {
+				increaseWPM = state.currIndex / 4.75 / (state.gameTimer / 60);
+			} else if (state.gameTimer === 1) {
+				increaseWPM = state.currIndex / 4.75 / (state.gameTimer * 3 / 60);
 			} else if (state.gameTimer === 2) {
-				increaseWPM = state.currIndex / 4.25 / (state.gameTimer * 2 / 60);
-			} else if (state.gameTimer > 2) {
-				increaseWPM = state.currIndex / 4.25 / (state.gameTimer / 60);
+				increaseWPM = state.currIndex / 4.75 / (state.gameTimer * 2 / 60);
+			} else if (state.gameTimer === 3) {
+				increaseWPM = state.currIndex / 4.75 / (state.gameTimer * 1.5 / 60);
 			}
 			return {
 				wordList: state.wordList,
